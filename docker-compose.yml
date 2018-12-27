@@ -15,8 +15,8 @@ services:
     # Comment out these volumes in production
     volumes:
       - ./api:/srv/api:rw,cached
-      # If you develop on Linux, uncomment the following line to use a bind-mounted host directory instead
-      # - ./api/var:/srv/api/var:rw
+      # If you'r not developing on Linux, comment the following line
+      - ./api/var:/srv/api/var:rw
 
   api:
     image: ${CONTAINER_REGISTRY_BASE}/nginx
@@ -62,9 +62,9 @@ services:
       # You should definitely change the password in production
       - POSTGRES_PASSWORD=!ChangeMe!
     volumes:
-      - db-data:/var/lib/postgresql/data:rw
-      # You may use a bind-mounted host directory instead, so that it is harder to accidentally remove the volume and lose all your data!
-      # - ./docker/db/data:/var/lib/postgresql/data:rw
+      # - db-data:/var/lib/postgresql/data:rw
+      # If you'r not developing on Linux, comment the following line and uncomment the previous
+      - ./docker/db/data:/var/lib/postgresql/data:rw
     ports:
       - "5432:5432"
 
