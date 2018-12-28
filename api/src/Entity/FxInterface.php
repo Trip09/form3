@@ -13,4 +13,14 @@ interface FxInterface // If we refract getOriginal[Amount|Currency] to get[Amoun
 
     // TODO: This should be getCurrency so we can unify the use of MonetaryInterface
     public function getOriginalCurrency(): string;
+
+    public function setContractReference(string $contractReference): FxInterface;
+
+    public function setExchangeRate(string $exchangeRate): FxInterface;
+
+    // TODO: This should be setAmount so we can unify the use of MonetaryInterface
+    public function setOriginalAmount(string $originalAmount): FxInterface;
+
+    // TODO: This should be setCurrency so we can unify the use of MonetaryInterface
+    public function setOriginalCurrency(string $originalCurrency): FxInterface;
 }
