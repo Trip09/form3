@@ -7,6 +7,18 @@
 	"item": [
 		{
 			"name": "GET | http://localhost:8080",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "edddbb14-3f83-4a53-b0bc-cff9b943fbcc",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () { pm.response.to.have.status(200); });"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
 			"request": {
 				"method": "GET",
 				"header": [
@@ -39,7 +51,7 @@
 					"script": {
 						"id": "02a0e779-ff43-4599-8fe8-8a5ba87d051e",
 						"exec": [
-							""
+							"pm.test(\"Status code is 200\", function () { pm.response.to.have.status(201); });"
 						],
 						"type": "text/javascript"
 					}
@@ -85,6 +97,18 @@
 		},
 		{
 			"name": "02 - GET | http://localhost:8080/payments/{{id}}",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "00b8ce4f-fe37-4f5a-b740-c9bbd00af1f4",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () { pm.response.to.have.status(200); });"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
 			"request": {
 				"method": "GET",
 				"header": [
@@ -126,6 +150,18 @@
 		},
 		{
 			"name": "03 - PUT | http://localhost:8080/payments/{{id}}",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "828e4073-187c-4cec-b03f-a013caae3a00",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () { pm.response.to.have.status(200); });"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
 			"request": {
 				"method": "PUT",
 				"header": [
@@ -167,6 +203,18 @@
 		},
 		{
 			"name": "04 - GET | http://localhost:8080/payments",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "aa0165f6-0e3a-4af4-a778-2a4df4bd6f0d",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () { pm.response.to.have.status(200); });"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
 			"request": {
 				"method": "GET",
 				"header": [
@@ -202,6 +250,18 @@
 		},
 		{
 			"name": "05 - DELETE | http://localhost:8080/payments/{{id}}",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "7ee12e74-7ee9-4b78-8aa2-6acb5f9c60f0",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () { pm.response.to.have.status(204); });"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
 			"request": {
 				"method": "DELETE",
 				"header": [],

@@ -7,7 +7,7 @@ parameters:
 
 api_platform:
     mapping:
-        paths: ['%kernel.project_dir%/src/Entity']
+        paths: ['%kernel.project_dir%/src/Api']
     title: Hello API Platform
     version: 1.0.0
     # Enable the Varnish integration
@@ -19,3 +19,11 @@ api_platform:
         shared_max_age: 3600
         vary: ['Content-Type', 'Authorization']
         public: true
+    name_converter: 'serializer.name_converter.camel_case_to_snake_case'
+    formats:
+        jsonld:   ['application/ld+json']
+        json:     ['application/json']
+        xml:      ['application/xml', 'text/xml']
+        yaml:     ['application/x-yaml']
+        csv:      ['text/csv']
+        html:     ['text/html']

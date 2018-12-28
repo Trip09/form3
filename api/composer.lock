@@ -44,17 +44,11 @@
         },
         {
             "name": "api-platform/core",
-            "version": "v2.3.5",
+            "version": "dev-master",
             "source": {
                 "type": "git",
-                "url": "https://github.com/api-platform/core.git",
-                "reference": "a73d407dd74f269fe38ee7c97b003f092a471818"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/api-platform/core/zipball/a73d407dd74f269fe38ee7c97b003f092a471818",
-                "reference": "a73d407dd74f269fe38ee7c97b003f092a471818",
-                "shasum": ""
+                "url": "https://github.com/Trip09/api-platform-expose-related-objects.git",
+                "reference": "d4b9d0c4cd17395a23dec4988567a64dbf52bef1"
             },
             "require": {
                 "doctrine/inflector": "^1.0",
@@ -6325,9 +6319,18 @@
             "time": "2017-04-07T12:08:54+00:00"
         }
     ],
-    "aliases": [],
+    "aliases": [
+                       {
+                           "alias": "1.9.9.9",
+                           "alias_normalized": "1.9.9.9",
+                           "version": "9999999-dev",
+                           "package": "api-platform/core"
+                       }
+],
     "minimum-stability": "stable",
-    "stability-flags": [],
+    "stability-flags":
+    {"api-platform/core": 20}
+    ,
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {

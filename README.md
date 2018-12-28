@@ -24,6 +24,10 @@ Original information about How to Install
 
 [Read the official "Getting Started" guide](https://api-platform.com/docs/distribution).
 
+Exercise Scope
+-------
+The scope of the exercise was the api. All the other parts, client // openapi yaml //postman files were done during the exercice.
+
 Tests
 -------
 Unit tests with PhpUnit
@@ -34,4 +38,3 @@ Credits
 API Platform is a next-generation web framework designed to easily create API-first projects without compromising extensibility
 and flexibility.
 Created by [Kévin Dunglas](https://dunglas.fr).
-d

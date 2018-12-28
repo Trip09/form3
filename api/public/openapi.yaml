@@ -1,0 +1,275 @@
+swagger: '2.0'
+basePath: /
+info:
+    title: 'Hello API Platform'
+    version: 1.0.0
+paths:
+    /payments:
+        get:
+            tags:
+                - Payment
+            operationId: getPaymentCollection
+            produces:
+                - application/ld+json
+                - application/json
+                - text/html
+            summary: 'Retrieves the collection of Payment resources.'
+            responses:
+                200:
+                    description: 'Payment collection response'
+                    schema: { type: array, items: { $ref: '#/definitions/Payment' } }
+            parameters:
+                -
+                    name: page
+                    in: query
+                    required: false
+                    type: integer
+                    description: 'The collection page number'
+        post:
+            tags:
+                - Payment
+            operationId: postPaymentCollection
+            consumes:
+                - application/ld+json
+                - application/json
+                - text/html
+            produces:
+                - application/ld+json
+                - application/json
+                - text/html
+            summary: 'Creates a Payment resource.'
+            parameters:
+                -
+                    name: payment
+                    in: body
+                    description: 'The new Payment resource'
+                    schema: { $ref: '#/definitions/Payment' }
+            responses:
+                201:
+                    description: 'Payment resource created'
+                    schema: { $ref: '#/definitions/Payment' }
+                400:
+                    description: 'Invalid input'
+                404:
+                    description: 'Resource not found'
+    '/payments/{id}':
+        get:
+            tags:
+                - Payment
+            operationId: getPaymentItem
+            produces:
+                - application/ld+json
+                - application/json
+                - text/html
+            summary: 'Retrieves a Payment resource.'
+            parameters:
+                -
+                    name: id
+                    in: path
+                    required: true
+                    type: string
+            responses:
+                200:
+                    description: 'Payment resource response'
+                    schema: { $ref: '#/definitions/Payment' }
+                404:
+                    description: 'Resource not found'
+        delete:
+            tags:
+                - Payment
+            operationId: deletePaymentItem
+            summary: 'Removes the Payment resource.'
+            responses:
+                204:
+                    description: 'Payment resource deleted'
+                404:
+                    description: 'Resource not found'
+            parameters:
+                -
+                    name: id
+                    in: path
+                    type: string
+                    required: true
+        put:
+            tags:
+                - Payment
+            operationId: putPaymentItem
+            consumes:
+                - application/ld+json
+                - application/json
+                - text/html
+            produces:
+                - application/ld+json
+                - application/json
+                - text/html
+            summary: 'Replaces the Payment resource.'
+            parameters:
+                -
+                    name: id
+                    in: path
+                    type: string
+                    required: true
+                -
+                    name: payment
+                    in: body
+                    description: 'The updated Payment resource'
+                    schema: { $ref: '#/definitions/Payment' }
+            responses:
+                200:
+                    description: 'Payment resource updated'
+                    schema: { $ref: '#/definitions/Payment' }
+                400:
+                    description: 'Invalid input'
+                404:
+                    description: 'Resource not found'
+definitions:
+    BeneficiaryAccount:
+        type: object
+        description: ''
+        properties:
+            account_type:
+                type: integer
+            account_name:
+                type: string
+            account_number:
+                type: string
+            account_number_code:
+                type: string
+            address:
+                type: string
+            name:
+                type: string
+            bank_id:
+                type: string
+            bank_id_code:
+                type: string
+    ChargesInformation:
+        type: object
+        description: ''
+        properties:
+            bearer_code:
+                type: string
+            sender_charges:
+                type: array
+                items:
+                    $ref: '#/definitions/MonetaryAmount'
+            receiver_charges_amount:
+                type: string
+            receiver_charges_currency:
+                type: string
+    DebtorAccount:
+        type: object
+        description: ''
+        properties:
+            account_name:
+                type: string
+            account_number:
+                type: string
+            account_number_code:
+                type: string
+            address:
+                type: string
+            name:
+                type: string
+            bank_id:
+                type: string
+            bank_id_code:
+                type: string
+    Fx:
+        type: object
+        description: ''
+        properties:
+            contract_reference:
+                type: string
+            exchange_rate:
+                type: string
+            original_amount:
+                type: string
+            original_currency:
+                type: string
+    MonetaryAmount:
+        type: object
+        description: ''
+        properties:
+            amount:
+                type: string
+            currency:
+                type: string
+    Payment:
+        type: object
+        description: ''
+        properties:
+            id:
+                type: string
+            type:
+                type: string
+                enum:
+                    - payment
+                example: payment
+            version:
+                type: integer
+            organisation_id:
+                type: string
+            attributes:
+                $ref: '#/definitions/PaymentAttributes'
+                description: Attributes
+                type: string
+        required:
+            - type
+            - version
+            - organisation_id
+            - attributes
+    PaymentAttributes:
+        type: object
+        description: ''
+        properties:
+            beneficiary_party:
+                $ref: '#/definitions/BeneficiaryAccount'
+                description: 'A Beneficiary Account Details'
+                type: string
+            charges_information:
+                $ref: '#/definitions/ChargesInformation'
+                type: string
+            debtor_party:
+                $ref: '#/definitions/DebtorAccount'
+                type: string
+            fx:
+                $ref: '#/definitions/Fx'
+                type: string
+            sponsor_party:
+                $ref: '#/definitions/SponsorAccount'
+                type: string
+            scheme_payment_sub_type:
+                type: string
+            scheme_payment_type:
+                type: string
+            processing_date:
+                type: string
+            payment_id:
+                type: string
+            payment_purpose:
+                type: string
+            payment_scheme:
+                type: string
+            payment_type:
+                type: string
+            reference:
+                type: string
+            numeric_reference:
+                type: string
+            end_to_end_reference:
+                type: string
+            amount:
+                type: string
+            currency:
+                type: string
+    SponsorAccount:
+        type: object
+        description: ''
+        properties:
+            account_number:
+                type: string
+            bank_id:
+                type: string
+            bank_id_code:
+                type: string
