@@ -132,7 +132,7 @@ class PaymentAttributes implements PaymentAttributesInterface
     private $fx;
 
     /**
-     * TransactionAttributes constructor.
+     * PaymentAttributes constructor.
      *
      * @param string                      $amount
      * @param string                      $currency

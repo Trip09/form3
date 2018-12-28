@@ -2,8 +2,9 @@
 
 namespace App\Entity;
 
+use App\Api\MonetaryAmount;
 use App\Api\MonetaryInterface;
-use App\Api\Transaction;
+use App\Api\PaymentInterface;
 
 class TransactionLog
 {
@@ -237,19 +238,36 @@ class TransactionLog
         return $this->id;
     }
 
-    public function setTransaction(Transaction $transaction): self
+    public function setId(string $id): self
     {
-        $this->id             = $transaction->getId();
-        $this->type           = $transaction->getType();
-        $this->organisationId = $transaction->getOrganisationId();
-        $this->version        = $transaction->getVersion();
+        $this->id = $id;
 
-        $attributes         = $transaction->getAttributes();
+        return $this;
+    }
+
+
+    public function populateFromPayment(PaymentInterface $payment): self
+    {
+        $this->id             = $payment->getId();
+        $this->type           = $payment->getType();
+        $this->organisationId = $payment->getOrganisationId();
+        $this->version        = $payment->getVersion();
+
+        $attributes         = $payment->getAttributes();
         $beneficiary        = $attributes->getBeneficiaryParty();
         $debtor             = $attributes->getDebtorParty();
         $sponsor            = $attributes->getSponsorParty();
         $fx                 = $attributes->getFx();
         $chargesInformation = $attributes->getChargesInformation();
+        $senderCharges      = $chargesInformation->getSenderCharges();
+        array_walk(
+            $senderCharges,
+            function (&$item, $key) {
+                if ($item instanceof MonetaryAmount) {
+                    $item = ['amount' => $item->getAmount(), 'currency' => $item->getCurrency()];
+                }
+            }
+        );
 
         $this->processingDate       = new \DateTime($attributes->getProcessingDate());
         $this->amount               = $attributes->getAmount();
@@ -293,7 +311,7 @@ class TransactionLog
         $this->bearerCode              = $chargesInformation->getBearerCode();
         $this->receiverChargesAmount   = $chargesInformation->getReceiverChargesAmount();
         $this->receiverChargesCurrency = $chargesInformation->getReceiverChargesCurrency();
-        $this->senderCharges           = $chargesInformation->getSenderCharges();
+        $this->senderCharges           = $senderCharges;
 
         $this->createdAt = $this->createdAt ?? new \DateTime();
         $this->updatedAt = $this->updatedAt ?? new \DateTime();

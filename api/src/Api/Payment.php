@@ -7,11 +7,9 @@ use ApiPlatform\Core\Annotation\ApiResource;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
- * @ApiResource(
- *     shortName="Payment"
- * )
+ * @ApiResource()
  */
-class Transaction implements TransactionInterface
+class Payment implements PaymentInterface
 {
     /**
      * @var string
@@ -115,35 +113,35 @@ class Transaction implements TransactionInterface
         return $this->attributes;
     }
 
-    public function setType(string $type): TransactionInterface
+    public function setType(string $type): PaymentInterface
     {
         $this->type = $type;
 
         return $this;
     }
 
-    public function setId(string $id): TransactionInterface
+    public function setId(string $id): PaymentInterface
     {
         $this->id = $id;
 
         return $this;
     }
 
-    public function setVersion(int $version): TransactionInterface
+    public function setVersion(int $version): PaymentInterface
     {
         $this->version = $version;
 
         return $this;
     }
 
-    public function setOrganisationId(string $organisationId): TransactionInterface
+    public function setOrganisationId(string $organisationId): PaymentInterface
     {
         $this->organisationId = $organisationId;
 
         return $this;
     }
 
-    public function setAttributes(PaymentAttributesInterface $attributes): TransactionInterface
+    public function setAttributes(PaymentAttributesInterface $attributes): PaymentInterface
     {
         $this->attributes = $attributes;
 

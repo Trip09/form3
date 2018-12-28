@@ -1,0 +1,190 @@
+App\Entity\TransactionLog:
+  table: transaction
+  type: entity
+  changeTrackingPolicy: DEFERRED_EXPLICIT
+
+  id:
+    id:
+      type: string
+
+  fields:
+    type:
+      type: string
+      length: 255
+
+    version:
+      type: integer
+      length: 10
+
+    organisationId:
+      type: string
+      length: 255
+
+    processingDate:
+      type: datetime
+
+    amount:
+      type: string
+      length: 255
+
+    currency:
+      type: string
+      length: 255
+
+    paymentId:
+      type: string
+      length: 255
+
+    paymentPurpose:
+      type: string
+      length: 255
+
+    paymentScheme:
+      type: string
+      length: 255
+
+    paymentType:
+      type: string
+      length: 255
+
+    reference:
+      type: string
+      length: 255
+
+    numericReference:
+      type: string
+      length: 255
+
+    endToEndReference:
+      type: string
+      length: 255
+
+    schemePaymentType:
+      type: string
+      length: 255
+
+    schemePaymentSubType:
+      type: string
+      length: 255
+
+    beneficiaryAccountType:
+      type: string
+      length: 255
+
+    beneficiaryAccountName:
+      type: string
+      length: 255
+
+    beneficiaryAccountNumber:
+      type: string
+      length: 255
+
+    beneficiaryAccountNumberCode:
+      type: string
+      length: 255
+
+    beneficiaryAddress:
+      type: string
+      length: 255
+
+    beneficiaryName:
+      type: string
+      length: 255
+
+    beneficiaryBankId:
+      type: string
+      length: 255
+
+    beneficiaryBankIdCode:
+      type: string
+      length: 255
+
+    debtorAccountName:
+      type: string
+      length: 255
+
+    debtorAccountNumber:
+      type: string
+      length: 255
+
+    debtorAccountNumberCode:
+      type: string
+      length: 255
+
+    debtorAddress:
+      type: string
+      length: 255
+
+    debtorName:
+      type: string
+      length: 255
+
+    debtorBankId:
+      type: string
+      length: 255
+
+    debtorBankIdCode:
+      type: string
+      length: 255
+
+    sponsorAccountNumber:
+      type: string
+      length: 255
+
+    sponsorBankId:
+      type: string
+      length: 255
+
+    sponsorBankIdCode:
+      type: string
+      length: 255
+
+    contractReference:
+      type: string
+      length: 255
+
+    exchangeRate:
+      type: string
+      length: 255
+
+    originalAmount:
+      type: string
+      length: 255
+
+    originalCurrency:
+      type: string
+      length: 255
+
+    bearerCode:
+      type: string
+      length: 255
+
+    senderCharges:
+      type: json
+
+    receiverChargesAmount:
+      type: string
+      length: 255
+
+    receiverChargesCurrency:
+      type: string
+      length: 255
+
+    createdAt:
+      type: datetime
+      column: created_at
+      gedmo:
+        timestampable:
+          on: create
+
+    updatedAt:
+      type: datetime
+      column: updated_at
+      gedmo:
+        timestampable:
+          on: update
+
+    deletedAt:
+      type: datetime
+      column: deleted_at
+      nullable: true

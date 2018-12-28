@@ -2,7 +2,7 @@
 
 namespace App\Api;
 
-interface TransactionInterface
+interface PaymentInterface
 {
     public function getType(): string;
 
