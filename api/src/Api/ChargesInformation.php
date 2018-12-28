@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Entity;
+namespace App\Api;
 
 use ApiPlatform\Core\Annotation\ApiProperty;
 use ApiPlatform\Core\Annotation\ApiResource;
@@ -45,10 +45,10 @@ class ChargesInformation implements ChargesInformationInterface
     /**
      * ChargesInformation constructor.
      *
-     * @param string $bearerCode
-     * @param array  $senderCharges
-     * @param string $receiverChargesAmount
-     * @param string $receiverChargesCurrency
+     * @param string              $bearerCode
+     * @param MonetaryInterface[] $senderCharges
+     * @param string              $receiverChargesAmount
+     * @param string              $receiverChargesCurrency
      */
     public function __construct(
         string $bearerCode,

@@ -1,17 +1,18 @@
 <?php
 
-namespace App\Entity;
+namespace App\Api;
 
 use ApiPlatform\Core\Annotation\ApiProperty;
 use ApiPlatform\Core\Annotation\ApiResource;
 
-/** @ApiResource(
+/**
+ * @ApiResource(
  *     shortName="PaymentAttributes",
  *     itemOperations={},
  *     collectionOperations={}
  * )
  */
-class Payment implements PaymentInterface
+class PaymentAttributes implements PaymentAttributesInterface
 {
     use AmountTrait;
 
@@ -33,7 +34,7 @@ class Payment implements PaymentInterface
     /**
      * @var string
      */
-    private $paymentSchema;
+    private $paymentScheme;
 
     /**
      * @var string
@@ -133,10 +134,12 @@ class Payment implements PaymentInterface
     /**
      * TransactionAttributes constructor.
      *
+     * @param string                      $amount
+     * @param string                      $currency
      * @param string                      $processingDate
      * @param string                      $paymentId
      * @param string                      $paymentPurpose
-     * @param string                      $paymentSchema
+     * @param string                      $paymentScheme
      * @param string                      $paymentType
      * @param string                      $reference
      * @param string                      $numericReference
@@ -150,26 +153,30 @@ class Payment implements PaymentInterface
      * @param FxInterface                 $fx
      */
     public function __construct(
+        string $amount,
+        string $currency,
         string $processingDate,
         string $paymentId,
         string $paymentPurpose,
-        string $paymentSchema,
+        string $paymentScheme,
         string $paymentType,
         string $reference,
         string $numericReference,
         string $endToEndReference,
         string $schemePaymentType,
         string $schemePaymentSubType,
-        ChargesInformationInterface $chargesInformation,
-        BeneficiaryAccountInterface $beneficiaryParty,
-        AccountInterface $debtorParty,
-        SponsorAccountInterface $sponsorParty,
-        FxInterface $fx
+        ChargesInformation $chargesInformation,
+        BeneficiaryAccount $beneficiaryParty,
+        DebtorAccount $debtorParty,
+        SponsorAccount $sponsorParty,
+        Fx $fx
     ) {
+        $this->amount               = $amount;
+        $this->currency             = $currency;
         $this->processingDate       = $processingDate;
         $this->paymentId            = $paymentId;
         $this->paymentPurpose       = $paymentPurpose;
-        $this->paymentSchema        = $paymentSchema;
+        $this->paymentScheme        = $paymentScheme;
         $this->paymentType          = $paymentType;
         $this->reference            = $reference;
         $this->numericReference     = $numericReference;
@@ -233,9 +240,9 @@ class Payment implements PaymentInterface
         return $this->paymentPurpose;
     }
 
-    public function getPaymentSchema(): string
+    public function getPaymentScheme(): string
     {
-        return $this->paymentSchema;
+        return $this->paymentScheme;
     }
 
     public function getPaymentType(): string
@@ -295,13 +302,13 @@ class Payment implements PaymentInterface
     }
 
     /**
-     * @param string $paymentSchema
+     * @param string $paymentScheme
      *
      * @return $this
      */
-    public function setPaymentSchema(string $paymentSchema): PaymentAttributesInterface
+    public function setPaymentScheme(string $paymentScheme): PaymentAttributesInterface
     {
-        $this->paymentSchema = $paymentSchema;
+        $this->paymentScheme = $paymentScheme;
 
         return $this;
     }

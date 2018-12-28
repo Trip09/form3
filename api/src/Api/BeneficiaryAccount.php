@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Entity;
+namespace App\Api;
 
 use ApiPlatform\Core\Annotation\ApiResource;
 
@@ -42,6 +42,7 @@ class BeneficiaryAccount implements BeneficiaryAccountInterface
         string $bankId,
         string $bankIdCode
     ) {
+        $this->accountName       = $accountName;
         $this->accountNumber     = $accountNumber;
         $this->accountNumberCode = $accountNumberCode;
         $this->address           = $address;

@@ -1,8 +1,7 @@
 <?php
 
-namespace App\Entity;
+namespace App\Api;
 
-use ApiPlatform\Core\Annotation\ApiProperty;
 use ApiPlatform\Core\Annotation\ApiResource;
 
 /**
@@ -12,7 +11,6 @@ trait AccountTrait
 {
     /**
      * @var string
-     * @ApiProperty(iri="http://schema.org/name")
      */
     private $accountName;
 
@@ -33,7 +31,6 @@ trait AccountTrait
 
     /**
      * @var string
-     * @ApiProperty(iri="http://schema.org/name")
      */
     private $name;
 

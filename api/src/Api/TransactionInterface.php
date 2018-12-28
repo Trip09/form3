@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Entity;
+namespace App\Api;
 
 interface TransactionInterface
 {
     public function getType(): string;
 
-    public function getId(): string;
+    public function getId(): ?string;
 
     public function getVersion(): int;
 

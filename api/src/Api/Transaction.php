@@ -1,10 +1,9 @@
 <?php
 
-namespace App\Entity;
+namespace App\Api;
 
 use ApiPlatform\Core\Annotation\ApiProperty;
 use ApiPlatform\Core\Annotation\ApiResource;
-use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
@@ -17,16 +16,14 @@ class Transaction implements TransactionInterface
     /**
      * @var string
      *
-     * @ORM\Id
-     * @ORM\GeneratedValue(strategy="UUID")
-     * @ORM\Column
+     * @ApiProperty(identifier=true)
+     *
      */
     private $id;
 
     /**
      * @var string
      *
-     * @ORM\Column
      * @Assert\NotBlank
      * @ApiProperty(
      *     attributes={
@@ -43,7 +40,6 @@ class Transaction implements TransactionInterface
     /**
      * @var int
      *
-     * @ORM\Column(type="integer")
      * @Assert\NotBlank
      */
     private $version = 0;
@@ -51,19 +47,19 @@ class Transaction implements TransactionInterface
     /**
      * @var string
      *
-     * @ORM\Column
      * @Assert\NotBlank
      * @ApiProperty(
      *
      * )
      */
-    private $organizationId;
+    private $organisationId;
 
     /**
-     * @var PaymentAttributesInterface Payment Attributes
+     * @var PaymentAttributes Attributes
      *
      * @Assert\NotBlank
      * @ApiProperty(
+     *     iri="false",
      *     attributes={
      *         "swagger_context"={
      *              "$ref" = "#/definitions/PaymentAttributes"
@@ -74,29 +70,27 @@ class Transaction implements TransactionInterface
     private $attributes;
 
     /**
-     * Payment constructor.
+     * PaymentAttributes constructor.
      *
-     * @param string                     $id
      * @param string                     $type
      * @param int                        $version
-     * @param string                     $organizationId
+     * @param string                     $organisationId
      * @param PaymentAttributesInterface $attributes
      */
     public function __construct(
-        string $id,
         string $type,
         int $version,
-        string $organizationId,
-        PaymentAttributesInterface $attributes
+        string $organisationId,
+        PaymentAttributes $attributes
     ) {
-        $this->id             = $id;
+        $this->id             = \uniqid();
         $this->type           = $type;
         $this->version        = $version;
-        $this->organizationId = $organizationId;
+        $this->organisationId = $organisationId;
         $this->attributes     = $attributes;
     }
 
-    public function getId(): string
+    public function getId(): ?string
     {
         return $this->id;
     }
@@ -113,7 +107,7 @@ class Transaction implements TransactionInterface
 
     public function getOrganisationId(): string
     {
-        return $this->organizationId;
+        return $this->organisationId;
     }
 
     public function getAttributes(): PaymentAttributesInterface
@@ -144,7 +138,7 @@ class Transaction implements TransactionInterface
 
     public function setOrganisationId(string $organisationId): TransactionInterface
     {
-        $this->organizationId = $organisationId;
+        $this->organisationId = $organisationId;
 
         return $this;
     }
@@ -155,5 +149,4 @@ class Transaction implements TransactionInterface
 
         return $this;
     }
-
 }

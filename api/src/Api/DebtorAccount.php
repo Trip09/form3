@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Entity;
+namespace App\Api;
 
 use ApiPlatform\Core\Annotation\ApiResource;
 
@@ -35,6 +35,7 @@ class DebtorAccount implements AccountInterface
         string $bankId,
         string $bankIdCode
     ) {
+        $this->accountName       = $accountName;
         $this->accountNumber     = $accountNumber;
         $this->accountNumberCode = $accountNumberCode;
         $this->address           = $address;

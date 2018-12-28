@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Entity;
+namespace App\Api;
 
 interface FxInterface // If we refract getOriginal[Amount|Currency] to get[Amount|Currency] we can use MonetaryInterface
 {
